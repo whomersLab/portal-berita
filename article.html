@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Baca artikel berita lengkap — Portal Berita Indonesia">
+  <meta property="og:type" content="article">
+  <title>Artikel — Portal Berita</title>
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📰</text></svg>">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <style>
+    /* Reading Progress Bar */
+    #reading-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(to right, var(--accent), #f4a261);
+      z-index: 9999;
+      width: 0%;
+      transition: width 0.1s ease;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Reading Progress Bar -->
+<div id="reading-progress" role="progressbar" aria-label="Progress membaca artikel" aria-valuemin="0" aria-valuemax="100"></div>
+
+<!-- ===================== HEADER ===================== -->
+<header class="site-header" role="banner">
+  <div class="header-top">
+    <div class="container header-top-inner">
+      <a href="index.html" class="logo" aria-label="Portal Berita — Beranda">
+        <div class="logo-icon" aria-hidden="true">PB</div>
+        <div class="logo-text">
+          <span class="logo-name">Portal Berita</span>
+          <span class="logo-tagline">Informasi Terpercaya</span>
+        </div>
+      </a>
+
+      <div class="search-bar" role="search">
+        <span class="search-icon" aria-hidden="true">🔍</span>
+        <input
+          type="search"
+          id="search-input"
+          placeholder="Cari berita..."
+          autocomplete="off"
+          aria-label="Cari berita — tekan Enter untuk mencari"
+        >
+      </div>
+
+      <time class="header-date" id="header-date" aria-label="Tanggal hari ini"></time>
+    </div>
+  </div>
+
+  <nav class="nav-bar container" role="navigation" aria-label="Navigasi Utama">
+    <a href="index.html" class="nav-link" id="nav-home">Beranda</a>
+    <a href="category.html?cat=Nasional" class="nav-link" id="nav-nasional">Nasional</a>
+    <a href="category.html?cat=Teknologi" class="nav-link" id="nav-teknologi">Teknologi</a>
+    <a href="category.html?cat=Kesehatan" class="nav-link" id="nav-kesehatan">Kesehatan</a>
+    <a href="category.html?cat=Pendidikan" class="nav-link" id="nav-pendidikan">Pendidikan</a>
+    <a href="category.html?cat=Olahraga" class="nav-link" id="nav-olahraga">Olahraga</a>
+    <a href="category.html?cat=Hiburan" class="nav-link" id="nav-hiburan">Hiburan</a>
+    <a href="category.html?cat=Ekonomi" class="nav-link" id="nav-ekonomi">Ekonomi</a>
+  </nav>
+</header>
+
+<!-- ===================== MAIN ======================= -->
+<main class="article-page" role="main">
+  <div class="container">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb navigasi">
+      <a href="index.html">🏠 Beranda</a>
+      <span class="breadcrumb-sep">/</span>
+      <a href="category.html" id="breadcrumb-cat">Kategori</a>
+      <span class="breadcrumb-sep">/</span>
+      <span id="breadcrumb-title" style="color:var(--text-muted)">Artikel</span>
+    </nav>
+
+    <!-- Article Layout -->
+    <div class="article-layout">
+
+      <!-- Main Article Content -->
+      <div>
+        <!-- Skeleton while loading -->
+        <div id="article-skeleton">
+          <div class="skeleton" style="height:32px;width:70%;margin-bottom:12px"></div>
+          <div class="skeleton" style="height:48px;margin-bottom:8px"></div>
+          <div class="skeleton" style="height:48px;width:85%;margin-bottom:24px"></div>
+          <div class="skeleton" style="height:400px;border-radius:20px;margin-bottom:32px"></div>
+          <div class="skeleton" style="height:18px;margin-bottom:12px"></div>
+          <div class="skeleton" style="height:18px;width:90%;margin-bottom:12px"></div>
+          <div class="skeleton" style="height:18px;margin-bottom:12px"></div>
+          <div class="skeleton" style="height:18px;width:75%;margin-bottom:24px"></div>
+        </div>
+
+        <!-- Article content injected by JS -->
+        <div id="article-content"></div>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="sidebar" aria-label="Artikel Terkait">
+
+        <!-- Related Articles -->
+        <div class="sidebar-widget">
+          <h2 class="widget-title">Berita Terkait</h2>
+          <div id="related-list">
+            <div class="skeleton" style="height:60px;margin-bottom:10px"></div>
+            <div class="skeleton" style="height:60px;margin-bottom:10px"></div>
+            <div class="skeleton" style="height:60px;margin-bottom:10px"></div>
+          </div>
+        </div>
+
+        <!-- Populer -->
+        <div class="sidebar-widget">
+          <h2 class="widget-title">Artikel Populer</h2>
+          <div id="popular-list">
+            <div class="skeleton" style="height:50px;margin-bottom:10px"></div>
+            <div class="skeleton" style="height:50px;margin-bottom:10px"></div>
+            <div class="skeleton" style="height:50px"></div>
+          </div>
+        </div>
+
+        <!-- Category Links -->
+        <div class="sidebar-widget">
+          <h2 class="widget-title">Jelajahi Kategori</h2>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <a href="category.html?cat=Nasional" class="tag">🇮🇩 Nasional</a>
+            <a href="category.html?cat=Teknologi" class="tag">💻 Teknologi</a>
+            <a href="category.html?cat=Kesehatan" class="tag">🏥 Kesehatan</a>
+            <a href="category.html?cat=Pendidikan" class="tag">📚 Pendidikan</a>
+            <a href="category.html?cat=Olahraga" class="tag">⚽ Olahraga</a>
+            <a href="category.html?cat=Hiburan" class="tag">🎬 Hiburan</a>
+            <a href="category.html?cat=Ekonomi" class="tag">📈 Ekonomi</a>
+          </div>
+        </div>
+
+      </aside>
+    </div>
+
+  </div>
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <div class="logo">
+          <div class="logo-icon">PB</div>
+          <div class="logo-text">
+            <span class="logo-name">Portal Berita</span>
+            <span class="logo-tagline">Informasi Terpercaya</span>
+          </div>
+        </div>
+        <p class="footer-description">
+          Sumber informasi terpercaya dan terkini untuk semua kalangan.
+        </p>
+        <div class="footer-social" aria-label="Media Sosial">
+          <a class="social-btn" href="#" aria-label="Twitter">𝕏</a>
+          <a class="social-btn" href="#" aria-label="Instagram">📸</a>
+          <a class="social-btn" href="#" aria-label="Facebook">f</a>
+          <a class="social-btn" href="#" aria-label="YouTube">▶</a>
+        </div>
+      </div>
+
+      <div>
+        <p class="footer-heading">Kategori</p>
+        <ul class="footer-links">
+          <li><a href="category.html?cat=Nasional">Nasional</a></li>
+          <li><a href="category.html?cat=Teknologi">Teknologi</a></li>
+          <li><a href="category.html?cat=Kesehatan">Kesehatan</a></li>
+          <li><a href="category.html?cat=Pendidikan">Pendidikan</a></li>
+          <li><a href="category.html?cat=Olahraga">Olahraga</a></li>
+          <li><a href="category.html?cat=Hiburan">Hiburan</a></li>
+          <li><a href="category.html?cat=Ekonomi">Ekonomi</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="footer-heading">Tentang</p>
+        <ul class="footer-links">
+          <li><a href="#">Tentang Kami</a></li>
+          <li><a href="#">Redaksi</a></li>
+          <li><a href="#">Hubungi Kami</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="footer-heading">Kontak</p>
+        <ul class="footer-links">
+          <li><a href="mailto:redaksi@portalberita.id">📧 redaksi@portalberita.id</a></li>
+          <li><a href="#">📍 Jakarta, Indonesia</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 Portal Berita. Hak Cipta Dilindungi.</p>
+      <p>Dibuat dengan ❤️ untuk Indonesia</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Back to Top -->
+<button class="back-to-top" id="back-to-top" aria-label="Kembali ke atas">↑</button>
+
+<!-- Scripts -->
+<script>
+  // Make copyArticleLink available globally
+  function copyArticleLink() {
+    if (window.articleJs && window.articleJs.copyLink) {
+      window.articleJs.copyLink();
+    }
+  }
+</script>
+<script src="assets/js/article.js"></script>
+
+</body>
+</html>

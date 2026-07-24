@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portal Berita — Sumber informasi terpercaya dan terkini. Berita Teknologi, Kesehatan, Pendidikan, Olahraga, Hiburan, dan Nasional.">
+  <meta property="og:title" content="Portal Berita — Berita Terkini Indonesia">
+  <meta property="og:description" content="Sumber informasi terpercaya dan terkini.">
+  <meta property="og:type" content="website">
+  <title>Portal Berita — Berita Terkini Indonesia</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📰</text></svg>">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Preconnect Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header class="site-header" role="banner">
+  <!-- Top Bar -->
+  <div class="header-top">
+    <div class="container header-top-inner">
+      <a href="index.html" class="logo" aria-label="Portal Berita — Beranda">
+        <div class="logo-icon" aria-hidden="true">PB</div>
+        <div class="logo-text">
+          <span class="logo-name">Portal Berita</span>
+          <span class="logo-tagline">Informasi Terpercaya</span>
+        </div>
+      </a>
+
+      <!-- Search -->
+      <div class="search-bar" role="search">
+        <span class="search-icon" aria-hidden="true">🔍</span>
+        <input
+          type="search"
+          id="search-input"
+          placeholder="Cari berita..."
+          autocomplete="off"
+          aria-label="Cari berita"
+        >
+      </div>
+
+      <time class="header-date" id="header-date" aria-label="Tanggal hari ini"></time>
+    </div>
+  </div>
+
+  <!-- Nav -->
+  <nav class="nav-bar container" role="navigation" aria-label="Navigasi Utama">
+    <a href="index.html" class="nav-link active" id="nav-home">Beranda</a>
+    <a href="category.html?cat=Nasional" class="nav-link" id="nav-nasional">Nasional</a>
+    <a href="category.html?cat=Teknologi" class="nav-link" id="nav-teknologi">Teknologi</a>
+    <a href="category.html?cat=Kesehatan" class="nav-link" id="nav-kesehatan">Kesehatan</a>
+    <a href="category.html?cat=Pendidikan" class="nav-link" id="nav-pendidikan">Pendidikan</a>
+    <a href="category.html?cat=Olahraga" class="nav-link" id="nav-olahraga">Olahraga</a>
+    <a href="category.html?cat=Hiburan" class="nav-link" id="nav-hiburan">Hiburan</a>
+    <a href="category.html?cat=Ekonomi" class="nav-link" id="nav-ekonomi">Ekonomi</a>
+  </nav>
+</header>
+
+<!-- =================== BREAKING NEWS ================ -->
+<div class="breaking-ticker" role="marquee" aria-label="Breaking News">
+  <div class="container ticker-inner">
+    <span class="ticker-label">🔴 TERKINI</span>
+    <div class="ticker-track">
+      <div class="ticker-content" id="ticker-content" aria-live="polite">
+        <span class="ticker-item">Memuat berita terbaru...</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== MAIN ======================= -->
+<main role="main">
+
+  <!-- SEARCH RESULTS (shown when searching) -->
+  <section class="search-results-section" id="search-results-section" aria-label="Hasil Pencarian">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Hasil Pencarian <span id="search-query-text"></span></h2>
+        <span class="text-muted" style="font-size:.85rem" id="search-result-count"></span>
+      </div>
+      <div id="search-grid" class="news-grid" role="feed" aria-label="Hasil pencarian berita"></div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT (hidden when searching) -->
+  <div id="main-content">
+
+    <!-- HERO SECTION -->
+    <section class="hero-section" aria-label="Berita Utama">
+      <div class="container">
+        <!-- Skeleton placeholder while loading -->
+        <div id="hero-skeleton" style="display:grid;gap:12px;grid-template-columns:1fr">
+          <div class="skeleton-card" style="border-radius:20px">
+            <div class="skeleton skeleton-img" style="height:380px;border-radius:20px"></div>
+          </div>
+        </div>
+        <!-- Hero will be injected here -->
+        <div id="hero-container"></div>
+      </div>
+    </section>
+
+    <!-- LATEST NEWS SECTION -->
+    <section class="main-content" aria-label="Berita Terbaru">
+      <div class="container">
+        <div class="section-gap">
+          <div class="section-header">
+            <h2 class="section-title">Berita Terbaru</h2>
+            <!-- Category filter tabs -->
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <button class="category-tab home-cat-tab active" data-cat="Semua" id="tab-semua">Semua</button>
+              <button class="category-tab home-cat-tab" data-cat="Teknologi" id="tab-teknologi">Teknologi</button>
+              <button class="category-tab home-cat-tab" data-cat="Kesehatan" id="tab-kesehatan">Kesehatan</button>
+              <button class="category-tab home-cat-tab" data-cat="Pendidikan" id="tab-pendidikan">Pendidikan</button>
+              <button class="category-tab home-cat-tab" data-cat="Olahraga" id="tab-olahraga">Olahraga</button>
+              <button class="category-tab home-cat-tab" data-cat="Hiburan" id="tab-hiburan">Hiburan</button>
+              <button class="category-tab home-cat-tab" data-cat="Nasional" id="tab-nasional">Nasional</button>
+              <button class="category-tab home-cat-tab" data-cat="Ekonomi" id="tab-ekonomi">Ekonomi</button>
+            </div>
+          </div>
+
+          <!-- News grid — skeletons shown first -->
+          <div id="news-grid" role="feed" aria-label="Daftar berita terbaru" class="news-grid"></div>
+
+          <!-- Load more -->
+          <div style="text-align:center;margin-top:32px">
+            <a href="category.html?cat=Semua" class="share-btn share-copy" style="display:inline-flex;padding:12px 32px;font-size:.9rem">
+              Lihat Semua Berita →
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /#main-content -->
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-main">
+      <!-- Brand -->
+      <div class="footer-brand">
+        <div class="logo">
+          <div class="logo-icon">PB</div>
+          <div class="logo-text">
+            <span class="logo-name">Portal Berita</span>
+            <span class="logo-tagline">Informasi Terpercaya</span>
+          </div>
+        </div>
+        <p class="footer-description">
+          Sumber informasi terpercaya dan terkini. Kami menghadirkan berita berkualitas dari berbagai kategori untuk menjaga Anda selalu terinformasi.
+        </p>
+        <div class="footer-social" aria-label="Media Sosial">
+          <a class="social-btn" href="#" aria-label="Twitter">𝕏</a>
+          <a class="social-btn" href="#" aria-label="Instagram">📸</a>
+          <a class="social-btn" href="#" aria-label="Facebook">f</a>
+          <a class="social-btn" href="#" aria-label="YouTube">▶</a>
+        </div>
+      </div>
+
+      <!-- Kategori -->
+      <div>
+        <p class="footer-heading">Kategori</p>
+        <ul class="footer-links">
+          <li><a href="category.html?cat=Nasional">Nasional</a></li>
+          <li><a href="category.html?cat=Teknologi">Teknologi</a></li>
+          <li><a href="category.html?cat=Kesehatan">Kesehatan</a></li>
+          <li><a href="category.html?cat=Pendidikan">Pendidikan</a></li>
+          <li><a href="category.html?cat=Olahraga">Olahraga</a></li>
+          <li><a href="category.html?cat=Hiburan">Hiburan</a></li>
+          <li><a href="category.html?cat=Ekonomi">Ekonomi</a></li>
+        </ul>
+      </div>
+
+      <!-- Tentang -->
+      <div>
+        <p class="footer-heading">Tentang</p>
+        <ul class="footer-links">
+          <li><a href="#">Tentang Kami</a></li>
+          <li><a href="#">Redaksi</a></li>
+          <li><a href="#">Kode Etik</a></li>
+          <li><a href="#">Pedoman Media Siber</a></li>
+          <li><a href="#">Hubungi Kami</a></li>
+        </ul>
+      </div>
+
+      <!-- Kontak -->
+      <div>
+        <p class="footer-heading">Kontak</p>
+        <ul class="footer-links">
+          <li><a href="mailto:redaksi@portalberita.id">📧 redaksi@portalberita.id</a></li>
+          <li><a href="#">📍 Jakarta, Indonesia</a></li>
+          <li><a href="#">📞 (021) 123-4567</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 Portal Berita. Hak Cipta Dilindungi.</p>
+      <p>Dibuat dengan ❤️ untuk Indonesia</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Back to Top -->
+<button class="back-to-top" id="back-to-top" aria-label="Kembali ke atas">↑</button>
+
+<!-- Scripts -->
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>
