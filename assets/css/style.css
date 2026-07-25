@@ -1186,3 +1186,27 @@ h1, h2, h3, h4, h5, h6 {
   .logo-tagline { display: none; }
   .hero-main .hero-content { padding: var(--spacing-md); }
 }
+
+/* ========================
+   ARTICLE INLINE IMAGE
+   ======================== */
+.article-inline-figure {
+  margin: var(--spacing-xl) 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.article-inline-img {
+  width: 100%;
+  height: auto;
+  max-height: 480px;
+  object-fit: cover;
+  display: block;
+  border-radius: var(--radius-md);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.article-inline-figure:hover .article-inline-img {
+  transform: scale(1.02);
+}

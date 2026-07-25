@@ -65,11 +65,30 @@ function renderArticle(article) {
   if (breadcrumbTitle) breadcrumbTitle.textContent = article.title.substring(0, 40) + '…';
 
   // Format content paragraphs
-  const paragraphs = article.content
+  const allParagraphs = article.content
     .split('\n\n')
     .filter(p => p.trim())
-    .map(p => `<p>${p.trim()}</p>`)
-    .join('');
+    .map(p => `<p>${p.trim()}</p>`);
+
+  // Insert secondImage after paragraph 3 (index 2) if exists
+  let bodyHtml = '';
+  if (article.secondImage && allParagraphs.length > 3) {
+    const before = allParagraphs.slice(0, 3).join('');
+    const after  = allParagraphs.slice(3).join('');
+    const imgHtml = `
+      <figure class="article-inline-figure animate-fade">
+        <img
+          src="${article.secondImage}"
+          alt="${article.title}"
+          class="article-inline-img"
+          loading="lazy"
+          onerror="this.src='assets/images/hero-1.png'"
+        >
+      </figure>`;
+    bodyHtml = before + imgHtml + after;
+  } else {
+    bodyHtml = allParagraphs.join('');
+  }
 
   // Tags HTML
   const tagsHtml = (article.tags || []).map(tag =>
@@ -118,7 +137,7 @@ function renderArticle(article) {
     >
 
     <div class="article-body animate-fade-up">
-      ${paragraphs}
+      ${bodyHtml}
     </div>
 
     <div class="tags-section animate-fade-up">
